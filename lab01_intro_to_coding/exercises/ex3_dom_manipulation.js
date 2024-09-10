@@ -4,7 +4,7 @@
 */
 
 // Task
-// What does DOM stand for?
+// What does DOM stand for? Document Object Model
 
 // Task
 // Open the file index.html in your browser. Open the index.html file in VS Code, right-click the tab and select "Open in Browser"
@@ -15,15 +15,20 @@
 
 // Task
 // What does the following code do?
+//document.body.querySelector(".viz"): This selects the first element in the HTML document with the class .viz and assigns it to the variable viz.
+//document.body.querySelector("#button"): This selects the element with the ID #button and assigns it to the variable button.
+//console.log(viz, viz.children): This logs the viz element and its child elements to the console.
+// ID is more specifc (you should never use more than once); class is elements
 const viz = document.body.querySelector(".viz");
 const button = document.body.querySelector("#button");
 
+
 console.log(viz, viz.children);
 
-const addChildToViz = () => {
+const addChildToViz = (len) => {
   const newChild = document.createElement("div");
   newChild.className = "rectangle";
-  newChild.style.height = Math.random() * 100 + "px";
+  newChild.style.height = len * 10 + "px";
   viz.appendChild(newChild);
 };
 
@@ -33,14 +38,17 @@ button.addEventListener("click", addChildToViz);
 
 // Task
 // Where can you see the results of the console.log below? How is it different from in previous exercises?
+//its in an array in the console.log
 
 function drawIrisData() {
   window
     .fetch("./iris_json.json")
     .then(data => data.json())
     .then(data => {
-      console.log(data);
+      data.forEach(e => {
+        addChildToViz(e.petallength);
     });
+  });
 }
 
 drawIrisData();

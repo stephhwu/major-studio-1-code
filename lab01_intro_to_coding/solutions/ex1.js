@@ -21,43 +21,34 @@ var URLs = [
   "amnh.org",
 ];
 
-var years = [
-  2004,
-  1896,
-  1924,
-  1930,
-  1935,
-  1869
-];
+var years = [2004, 1896, 1924, 1930, 1935, 1869];
 
 // Task 1
 // Console log the length of each Array
-console.log(names.length)
-console.log(URLs.length)
-console.log(years.length)
-
-
+console.log(names.length);
+console.log(URLs.length);
+console.log(years.length);
 
 // Task 2
 // add a new item to an array
-var newName = "The International Center of Photography"
-var newURL = "icp.org"
-var newYear = 1974
+var newName = "The International Center of Photography";
+var newURL = "icp.org";
+var newYear = 1974;
 
 names.push(newName);
 URLs[URLs.length] = newURL;
-years = years.concat(newYear);
+years = years.concat([newYear]);
 
 // Task 3
-// construct an Object out of our three Arrays, object with an array of objects (can drill into it which is why jsons are great)
+// construct an Object out of our three Arrays
 // the result should look similar to this:
 var result = {
   "Museum Name 1": {
     URL: "www.museumwebsite.com",
-    year: 2019
-  }
-}
-//if your datatype has space or you're unsure, you need to put it in a string [" "] the URL is an example here
+    year: 2019,
+  },
+};
+
 var museums = {};
 for (var i = 0; i < names.length; i++) {
   var currentName = names[i];
@@ -69,10 +60,10 @@ for (var i = 0; i < names.length; i++) {
   museums[currentName].year = currentYear;
 }
 
-console.log("museums", museums)
+console.log("museums", museums);
 
 var museums2 = {};
-names.forEach(function(n, i) {
+names.forEach((n, i) => {
   museums2[n] = {};
 
   var currentURL = URLs[i];
@@ -82,11 +73,11 @@ names.forEach(function(n, i) {
   museums2[n]["year"] = currentYear;
 });
 
-console.log('museums2', museums2)
+console.log("museums2", museums2);
 
 // Task
 // Write a function to add a new museum object, with properties URL and year, to an existing museums object. Call it on museums2
-function addAMuseum(museums, newName, newURL, newYear){
+function addAMuseum(museums, newName, newURL, newYear) {
   museums[newName] = {};
   museums[newName].URL = newURL;
   museums[newName].year = newYear;
@@ -94,6 +85,6 @@ function addAMuseum(museums, newName, newURL, newYear){
   return museums;
 }
 
-addAMuseum(museums2, "The International Center of Photography", "icp.org", 1974);
+addAMuseum(museums2, "MoMath", "momath.org", 2014);
 
-console.log('museums2', museums2);
+console.log("museums2", museums2);
