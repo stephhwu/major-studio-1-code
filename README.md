@@ -4,35 +4,49 @@
 
 <h3>Option 1</h3>
 
-<p>Title: Exploring Invertebrate Zoology Through Depth and Region: Visualizing the Smithsonian's Kāne‘ohe Bay Collection</p>
+Here’s a reworded version for better flow:
 
-<p>Questions: How does the abundance of invertebrate species vary by phylum and class in the Smithsonian's Kāne‘ohe Bay collection?
-How are these species distributed across different regions and depths in the bay?
-Can we identify patterns of species resilience or decline based on depth, collection date, or external stressors such as human impact?</p>
+---
 
-<p>Network Diagram A network diagram is used to visualize the phylum and class relationships of species within the Kāne‘ohe Bay collection. This method is ideal because it can effectively represent hierarchical relationships, where node size corresponds to the number of available images. It also allows users to interact with the network to explore more specific categories such as phylum, class, or individual species details.</p>
+**Title:** *Exploring Invertebrate Zoology Through Depth and Region: A Visualization of the Smithsonian's Kāne‘ohe Bay Collection*
 
-<p>While exploring the Invertebrate Zoology collection, I came across stunning images of invertebrates collected from Kāne‘ohe Bay in Hawaii. Intrigued, I researched further and discovered a study titled *"The Unnatural History of Kāne‘ohe Bay: Coral Reef Resilience in the Face of Centuries of Anthropogenic Impacts."* The bay has faced numerous challenges, including:
-Dredging and filling (1939-1945)
-Increased sedimentation from urbanization
-Sewage discharge (1963-1979)
-Overfishing
-The introduction of invasive species
-Despite these stressors, the bay remains resilient, making it a key area for ongoing research, with coral communities continuing to thrive. I thought it would be compelling to create a network diagram visualizing the phylum and class of species from the Smithsonian's collection, where the size of each node corresponds to the number of images available. A tooltip could provide general information about each phylum and class, with an option to toggle and highlight specific phyla. Additionally, users would be able to click into categories to view the invertebrate images, sorted by collection date or depth.</p>
+**Research Questions:**
+- How does the abundance of invertebrate species vary across phylum and class within the Smithsonian’s Kāne‘ohe Bay collection?
+- How are these species distributed across different regions and depths in the bay?
+- Can we identify patterns of species resilience or decline based on depth, collection date, or external stressors like human impact?
+
+**Network Diagram:**
+A network diagram will be used to map the relationships between phylum and class within the Kāne‘ohe Bay collection. This visualization is ideal for representing hierarchical relationships, where the size of each node reflects the number of images available. It allows users to interact with the diagram, exploring specific categories such as phylum, class, or even individual species in detail.
+
+During my exploration of the Smithsonian’s Invertebrate Zoology collection, I encountered striking images of invertebrates collected from Kāne‘ohe Bay, Hawaii. Delving deeper, I came across the study *"The Unnatural History of Kāne‘ohe Bay: Coral Reef Resilience in the Face of Centuries of Anthropogenic Impacts,"* which highlights the bay’s challenges, including:
+- Dredging and filling (1939-1945)
+- Increased sedimentation from urbanization
+- Sewage discharge (1963-1979)
+- Overfishing
+- The introduction of invasive species
+
+Despite these stressors, Kāne‘ohe Bay has shown remarkable resilience, with coral communities continuing to thrive. This inspired me to design a network diagram that visualizes the species collected from the bay. Each node represents a phylum or class, with node size corresponding to the number of images in the collection. Interactive tooltips will provide key details about each phylum and class, and users can toggle specific phyla for closer inspection. Additionally, users will be able to click into categories to explore images sorted by collection date or depth.
 
 <img width="583" alt="Screenshot 2024-09-11 at 7 43 05 PM" src="https://github.com/user-attachments/assets/cd58e53f-3e76-4577-a81b-dff26257796a">
 
 <h3>Option 2</h3>
 
-<p>Linear Bubble Chart A linear bubble chart groups the collection based on regions rather than species classification. This is chosen to provide a high-level overview of how many images exist for each region, with users able to click through to explore more detailed information. It emphasizes regional patterns and allows filtering by collection depth and date.</p>
+**Title:** *Geography of Smithsonian's Invertebrate Zoology Collection*
 
-<p>Instead of using a map, I propose grouping regions based on the invertebrate images and using a linear bubble chart to represent the number of images per region. Users can click on each region to delve deeper, accessing a similar interface as in Option 1. This would allow them to explore the collection within each region, with filtering options for depth and collection date.</p>
+**Linear Bubble Chart:**
+<p>A Linear Bubble Chart groups the collection based on regions rather than species classification. This approach provides a high-level overview of the number of images available for each region, allowing users to click on a specific region to explore more detailed information. The chart emphasizes regional patterns and offers filtering options for both collection depth and date.
+
+Rather than using a traditional map, this method organizes regions based on the invertebrate images, representing the number of images from each region as bubbles. Users can interact with the chart by clicking on regions to explore the collection further, accessing a similar interface as in Option 1. They will also be able to filter the data based on depth and collection date to gain deeper insights.</p>
 
 <h3>Option 3</h3>
 
-<p>Option 3 features an inverted line graph with the y-axis representing increasing depth from top to bottom. The size of the circles on the graph indicates the number of images at each depth. Alternatively, for a more artistic approach, I’m considering using bathymetric maps. In this design, rings on the map represent different depths, and a circle overlaid on the map shows the number of images for each depth range. Users could click on each visualization to explore the various depths in detail.</p>
+**Title:** *Explroing Smithsonian's Invertebrate Zoology Collection Through Depth*
 
-<p>Inverted Line Graph An inverted line graph is used to represent species distribution by depth, with the y-axis inverted to display increasing depth from top to bottom. This method visualizes how species' presence changes with depth, where circle size corresponds to the number of images at each depth. Alternatively, a bathymetric map could be used to present a more artistic visualization, with contour rings representing depth and overlaid circles indicating the image count for each depth range. This provides a visually engaging and intuitive understanding of species depth distribution.</p>
+**Inverted Line Graph:**
+
+<p>An Inverted Line Graph uses the y-axis to represent increasing depth, displayed from top to bottom. The size of the circles on the graph indicates the number of images collected at each depth. This method effectively visualizes how species distribution changes with depth, with larger circles representing a greater number of images.
+
+For a more artistic approach, a Bathymetric Map could be used instead. In this design, rings on the map represent different depth levels, and overlaid circles show the number of images within each depth range. Both the inverted line graph and the bathymetric map allow users to explore species distribution by depth in an intuitive and visually engaging manner. Users will be able to click on various depths to further investigate the species and images collected from those levels.</p>
 
 <img width="560" alt="Screenshot 2024-09-11 at 7 43 52 PM" src="https://github.com/user-attachments/assets/495d1f73-5a97-498b-85d2-82040c1516be">
 
