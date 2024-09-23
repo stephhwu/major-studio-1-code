@@ -3,9 +3,6 @@
 <h2>01B Concept & Sketches</h2>
 
 <h3>Option 1</h3>
-
-Here’s a reworded version for better flow:
-
 ---
 
 **Title:** *Exploring Invertebrate Zoology Through Depth and Region: A Visualization of the Smithsonian's Kāne‘ohe Bay Collection*
