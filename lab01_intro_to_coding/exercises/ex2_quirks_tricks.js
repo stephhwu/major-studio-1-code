@@ -34,6 +34,7 @@ console.log("test4 is ", test4, " and test 5 is ", test5);
 
 // Task
 // What are the values of p, q, and r? Research what is going on here.
+//floating point arithmetic 
 var w = 0.1;
 var x = 0.2;
 var y = 0.4;
@@ -44,3 +45,7 @@ var p = w + x;
 var q = z - x;
 
 var r = y - w;
+
+console.log(p);
+console.log(q);
+console.log(r);

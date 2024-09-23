@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneath the Surface</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body>
+    <h1 class="title">
+        <span class="beneath">Beneath</span>
+        <span class="surface"> the Surface</span>
+    </h1>
+    <p class="subtext">Mapping Invertebrate Diversity in the Smithsonian Collection</p>
+    <div class="image-container">
+        <div class="image-wrapper">
+            <div class="tooltip-container">
+                <img src="images/hover.png" class="hover-image" alt="Hover Image">
+                <span class="tooltip">This is where most marine life thrives due to abundant sunlight for photosynthesis.</span>
+            </div>
+                        <img src="images/01.jpg" alt="Image 01">
+            <p class="image-text">Epipelagic Zone<br>(Sunlight Zone)</p>
+            <div class="rectangle-container"> <!-- New container for positioning -->
+                <p class="rectangle-text">0 - 200 meters</p> <!-- Text on top -->
+                <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
+            </div>
+  
+         </div>
+        
+        <div class="image-wrapper">
+            <div class="tooltip-container">
+                <img src="images/hover.png" class="hover-image" alt="Hover Image">
+                <span class="tooltip">Where light gradually diminishes. Many bioluminescent organisms inhabit this mysterious realm.</span>
+            </div>
+            <img src="images/02.jpg" alt="Image 02">
+            <p class="image-text">Mesopelagic Zone<br>(Twilight Zone)</p>
+            <div class="rectangle-container"> <!-- New container for positioning -->
+                <p class="rectangle-text">200 - 1,000 meters</p> <!-- Text on top -->
+                <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
+            </div>       
+ 
+         </div>
+        
+        <div class="image-wrapper">
+            <div class="tooltip-container">
+                <img src="images/hover.png" class="hover-image" alt="Hover Image">
+                <span class="tooltip">Zone of perpetual darkness. Strange and often translucent creatures adapted to extreme pressure live here.</span>
+            </div>            <img src="images/03.jpg" alt="Image 03">
+            <p class="image-text">Bathypelagic Zone<br>(Midnight Zone)</p>
+            <div class="rectangle-container"> <!-- New container for positioning -->
+                <p class="rectangle-text">1,000 - 4,000 meters</p> <!-- Text on top -->
+                <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
+            </div>
+        </div>
+
+    </div>
+    
+    
+    <div id="chart"></div>
+    <script src="script.js"></script>
+    <div id="image-container"></div>
+
+    <div id="depth-images-container" style="display: none;"></div>
+
+</body>
+</html>
+
+<!-- <div class="hover-image" data-tooltip="Tooltip text for image 1"></div>
+<div class="tooltip"></div>      -->

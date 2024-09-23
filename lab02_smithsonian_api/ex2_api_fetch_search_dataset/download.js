@@ -15,12 +15,12 @@ function download(filename, text) {
 }
 
 // click the download button to initiate download
-document.getElementById("dwn-btn").addEventListener("click", function(){
-  // fetching our stringified JSON data
-  var text = jsonString;
+// document.getElementById("dwn-btn").addEventListener("click", function(){
+//   // fetching our stringified JSON data
+//   var text = jsonString;
   
-  // name of our file
-  var filename = "data.json"
+//   // name of our file
+//   var filename = "data.json"
   
-  download(filename, text);
-}, false);
+//   download(filename, text);
+// }, false);

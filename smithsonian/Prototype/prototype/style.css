@@ -1,0 +1,294 @@
+body {
+    font-family: 'Inter', sans-serif; /* Set the font to Inter */
+    background-color: #060608;
+    color: #B7B3AD;
+}
+
+/* .bubble {
+    opacity: 0.7;
+}
+
+.bubble:hover {
+    opacity: 1;
+} */
+
+
+
+.depth-label {
+    font-size: 16px;
+    fill: #B7B3AD;
+    font-family: 'Inter', sans-serif; /* Set the font to Inter */
+}
+
+.title {
+    text-align: center;
+    font-size: 96px;
+    margin-bottom: 5px;
+    margin-top: 100px;
+}
+
+.title .beneath {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.title .surface {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+}
+
+.subtext {
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    margin-top: 5px; /* Reduced space above the subtext */
+    width: 30%; /* Control width to force line breaks */
+    margin-left: auto; /* Center the text */
+    margin-right: auto; /* Center the text */
+}
+
+/* Center the image container */
+/* Existing CSS */
+.image-container {
+    display: flex;
+    justify-content: center; /* Center the images in the container */
+    gap: 170px; /* Adjust the spacing between the images */
+    margin: 20px auto; /* Add some margin around the container */
+}
+
+.image-container img {
+    margin-top: 120px;
+    width: 400px; /* Set the width of the main images */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* New CSS for hover.png */
+.image-wrapper {
+    position: relative; /* Establish a relative container for positioning the hover image */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the images horizontally */
+    text-align: center; /* Center the content inside this wrapper */
+
+}
+
+.hover-image {
+    position: absolute; /* Allows for free positioning */
+    top: 130px; /* Adjust this value to control how low the hover image appears */
+    left: 50%; 
+    transform: translateX(-50%); /* Center the hover image horizontally */
+    width: 80px !important; /* Force the width to be 60px */
+    max-width: 100px; /* Ensure the image doesn’t exceed this width */
+    height: auto !important; /* Maintain aspect ratio */
+    max-height: 90px; /* Set a maximum height */
+}
+
+.image-text {
+    font-family: 'Inter', sans-serif; /* Set the font */
+    color: #B7B3AD; /* Text color */
+    margin-top: 40px; /* Adjust the space above the text */
+    font-size: 18px; /* Adjust font size */
+}
+
+
+
+.rectangle-container {
+    position: relative; /* Create a positioning context */
+    display: inline-block; /* Allow for centering */
+}
+
+.rectangle-image {
+    display: block;
+    margin: 0 auto; /* Center the image */
+    width: 270px !important; /* Force the width to be 60px */
+    max-width: 320px; /* Ensure the image doesn’t exceed this width */
+    height: auto !important; /* Maintain aspect ratio */
+    max-height: 90px; /* Set a maximum height */
+    transform: translateY(-110px); /* Move the image up */
+}
+
+.rectangle-text {
+    position: absolute; /* Position the text absolutely */
+    top: 14%; /* Adjust vertical position as needed */
+    left: 50%; /* Center the text horizontally */
+    transform: translateX(-50%); /* Center the text */
+    text-align: center; /* Center the text */
+    font-size: 18px; /* Adjust font size */
+    color: #B7B3AD; /* Match text color */
+    white-space: nowrap; /* Prevent wrapping */
+    margin: 0; /* Remove default margins */
+    z-index: 1; /* Ensure it appears on top */
+}
+
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    visibility: hidden;
+    font-family: 'Inter', sans-serif; /* Set the font */
+    width: 200px;
+    background-color: rgba(58, 59, 64, 0.7);
+    color: #B7B3AD;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+
+    
+    top: 140%; /* Increase to move further down */
+    left: 150%; /* Increase to move further to the right */
+    /* transform: translateX(-50%); Keep centering adjustment */
+    
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.chart-tooltip-container {
+    position: absolute;
+    pointer-events: none;
+}
+
+.chart-tooltip {
+    font-family: 'Inter', sans-serif;
+    width: 200px;
+    background-color: rgba(58, 59, 64, 0.7);
+    color: #B7B3AD;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    
+    /* Positioning */
+    top: 0;
+    left: 0;
+    
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+/* Ensure the chart tooltip container doesn't interfere with chart interactions */
+.chart-tooltip-container {
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+#depth-images-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2A2B2F;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.depth-image {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+
+.depth-image img {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* Style for the close button */
+#depth-images-container button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 10px 20px; /* Increased padding for size */
+    font-size: 16px; /* Adjust font size */
+    background-color: #9FB1C4;
+    color: #060608;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#depth-images-container button:hover {
+    background-color: #728591;
+}
+
+.depth-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; /* Desired font size */
+    text-align: center;
+    font-weight: bold; /* If you want to keep the bold style */
+}
+
+a {
+    color: #F49AAB; /* Replace with your desired color code */
+    text-decoration: underline; /* Optional: remove the underline */
+}
+
+.image-text {
+    color: #B7B3AD; /* Text color */
+    margin-top: 10px; /* Space above the text */
+    font-size: 18px; /* Adjust font size */
+    line-height: 1.5; /* Adjust line height for spacing between lines */
+    text-align: center; /* Center align text if needed */
+}
+
+.depth-image p {
+    margin: 0; /* Remove default margins */
+    line-height: 1.4; /* Adjust this value for line spacing */
+    font-family: 'Inter', sans-serif; /* Set default font for paragraphs */
+}
+
+.depth-image .title {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: bold; /* Optional: make it bold */
+    margin: 0; /* Remove default margins */
+}
+
+
+#depth-images-container .close-button {
+    position: fixed;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 1000; /* Ensure it's above other elements */
+    background-color: #B7B3AD; /* Button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Below the close button */
+}
