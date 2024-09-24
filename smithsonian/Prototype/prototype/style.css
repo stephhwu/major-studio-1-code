@@ -12,6 +12,11 @@ body {
     opacity: 1;
 } */
 
+#chart {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+}
+
 
 
 .depth-label {
@@ -244,7 +249,7 @@ body {
 }
 
 a {
-    color: #F49AAB; /* Replace with your desired color code */
+    color: #9FB1C4; /* Replace with your desired color code */
     text-decoration: underline; /* Optional: remove the underline */
 }
 
@@ -293,3 +298,16 @@ a {
     z-index: 999; /* Below the close button */
 }
 
+#legend-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px; /* Match the SVG width */
+    margin: 0 auto;
+}
+
+#legend-svg {
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
+}

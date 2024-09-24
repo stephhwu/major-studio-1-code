@@ -26,93 +26,93 @@ d3.json("everything.json").then(data => {
 
     // Set up SVG
     const width = 1728;
-    const height = 5500;
+    const height = 6000;
     const svg = d3.select("#chart")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
     
     // Add a group for the legend
-    const legend = svg.append("g")
-        .attr("id", "legend")
-        .attr("transform", `translate(50, 20)`); // Adjusted y position
+// Reference the new SVG inside the div
+const legendSvg = d3.select("#legend-svg")
+.attr("preserveAspectRatio", "xMidYMid meet");
 
-    // Add a rectangle (box) to contain the legend
+
+// Add a group for the legend elements
+const legend = legendSvg.append("g")
+    .attr("id", "legend")
+
 // Add a rectangle (box) to contain the legend
 legend.append("rect")
-    .attr("x", 350)  // Adjusted x position
+    .attr("x", 350)  
     .attr("y", 220)
-    .attr("width", 1000)  // Adjust the width as needed
-    .attr("height", 200)  // Adjust the height as needed
+    .attr("width", 1000)  
+    .attr("height", 200) 
     .attr("fill", "none")
     .attr("stroke", "#B7B3AD")
     .attr("stroke-width", 0.5)
-    .attr("rx", 10)      // Rounded corners
+    .attr("rx", 10)
     .attr("ry", 10);     
 
 // Add the "Legend" label
 legend.append("text")
-    .attr("x",400)
+    .attr("x", 400)
     .attr("y", 330) // Adjusted y position
     .attr("text-anchor", "start")
     .attr("alignment-baseline", "middle")
-    .style("font-family", "'Cormorant Garamond', serif") // Apply the font
+    .style("font-family", "'Cormorant Garamond', serif")
     .style("font-size", "48px")
     .style("font-weight", "bold")
-    .style("fill", "#B7B3AD")  // Set text color
+    .style("fill", "#B7B3AD")
     .text("Legend");
 
-// Define the lines of the paragraph text
+// Add the paragraph text lines
 const paragraphTextLines = [
     "Circle size correlates with",
     "the number of images",
     "at that depth"
 ];
 
-// Add the paragraph text with line breaks
 paragraphTextLines.forEach((line, index) => {
     legend.append("text")
         .attr("x", 900) // Position to the right of the circles
         .attr("y", 280 + index * 25) // Adjust the y position for each line
         .attr("text-anchor", "start")
         .attr("alignment-baseline", "middle")
-        .style("font-family", "'Inter', sans-serif") // Change to Inter Regular
-        .style("font-size", "20px") // Adjust font size as needed
-        .style("fill", "#B7B3AD")  // Set text color
+        .style("font-family", "'Inter', sans-serif")
+        .style("font-size", "20px")
+        .style("fill", "#B7B3AD")
         .text(line);
 });
 
-// Draw the horizontal line
+// Draw the horizontal line and arrowhead as before
 legend.append("line")
-    .attr("x1", 900)   // Starting x position (left)
-    .attr("y1", 370)   // Y position below the text
-    .attr("x2", 1250)  // Ending x position (right)
-    .attr("y2", 370)   // Keep y position the same for a horizontal line
-    .attr("stroke", "#B7B3AD") // Line color
+    .attr("x1", 900)   
+    .attr("y1", 370)   
+    .attr("x2", 1250)  
+    .attr("y2", 370)   
+    .attr("stroke", "#B7B3AD")
     .attr("stroke-width", 1);
 
-// Draw the arrowhead at the right end of the line
-const arrowLength = 10; // Length of the arrowhead
-const arrowWidth = 5;   // Width of the arrowhead
+// Draw the arrowhead
+const arrowLength = 10; 
+const arrowWidth = 5;  
 
-// Left side of the arrowhead
 legend.append("line")
-    .attr("x1", 1250)                  // X position for the start of the arrowhead
-    .attr("y1", 370)                   // Same Y position
-    .attr("x2", 1250 - arrowLength)    // X position for the end of the left arrowhead
-    .attr("y2", 370 - arrowWidth)      // Y position for the left arrowhead
-    .attr("stroke", "#B7B3AD")         // Line color
+    .attr("x1", 1250)                  
+    .attr("y1", 370)                   
+    .attr("x2", 1250 - arrowLength)    
+    .attr("y2", 370 - arrowWidth)      
+    .attr("stroke", "#B7B3AD")         
     .attr("stroke-width", 1);
 
-// Right side of the arrowhead
 legend.append("line")
-    .attr("x1", 1250)                  // X position for the start of the arrowhead
-    .attr("y1", 370)                   // Same Y position
-    .attr("x2", 1250 - arrowLength)    // X position for the end of the right arrowhead
-    .attr("y2", 370 + arrowWidth)      // Y position for the right arrowhead
-    .attr("stroke", "#B7B3AD")         // Line color
+    .attr("x1", 1250)                  
+    .attr("y1", 370)                   
+    .attr("x2", 1250 - arrowLength)    
+    .attr("y2", 370 + arrowWidth)      
+    .attr("stroke", "#B7B3AD")         
     .attr("stroke-width", 1);
-
 
 
 // Add the circles with different sizes to represent various data counts
@@ -130,6 +130,8 @@ circleData.forEach((d, i) => {
         .attr("r", d.size / 2)     // Adjust radius according to your legend sizes
         .attr("fill", "url(#bubbleGradient)");
 });
+
+
 
 
 
@@ -160,7 +162,7 @@ circleData.forEach((d, i) => {
     // Create scale for bubble position
     const yScale = d3.scalePoint()
         .domain(depthGroups)
-        .range([600, height - 40]);
+        .range([300, height - 200]);
 
     // Create x scale for spacing
     const xScale = d3.scalePoint()
@@ -311,7 +313,9 @@ const paragraphs = [
     },
     {
         range: "1000-2000 meters",
-        text: "This depth presents extreme conditions, including high pressure, low temperatures, and complete darkness, creating a unique habitat for specially adapted organisms. Life in the bathypelagic zone is sparse but fascinating, with bioluminescent creatures like deep-sea fish, squids, and various invertebrates using light to attract prey or communicate. These adaptations allow them to thrive in an environment where food is scarce, relying on the slow descent of organic material from above or engaging in vertical migrations to feed."
+        text: "This depth presents extreme conditions, including high pressure, low temperatures, and complete darkness, creating a unique habitat for specially adapted organisms. Life in the bathypelagic zone is sparse but fascinating, with bioluminescent creatures like deep-sea fish, squids, and various invertebrates using light to attract prey or communicate. These adaptations allow them to thrive in an environment where food is scarce, relying on the slow descent of organic material from above or engaging in vertical migrations to feed.",
+        image: "images/primno.png"
+
     }
 ];
 
@@ -327,7 +331,7 @@ paragraphs.forEach(paragraph => {
             .attr("width", 400)
             .attr("height", 400)
             .attr("x", 0)
-            .attr("y", -400);
+            .attr("y", -450);
     }
 
     group.append("text")
@@ -340,7 +344,7 @@ paragraphs.forEach(paragraph => {
         .style("fill", "#B7B3AD")
         .style("width", "370px")
         .text(paragraph.text)
-        .call(wrapText, 370);
+        .call(wrapText, 350);
 });
 // Function to wrap text
 function wrapText(text, width) {
@@ -377,7 +381,7 @@ function wrapText(text, width) {
     // Add vertical line
     chartGroup.append("line")
         .attr("x1", 125)
-        .attr("y1", 500)
+        .attr("y1", 200)
         .attr("x2", 125)
         .attr("y2", height - 10)
         .attr("stroke", "#B7B3AD")
@@ -386,9 +390,9 @@ function wrapText(text, width) {
     // Add horizontal line at the top
     chartGroup.append("line")
         .attr("x1", 125)
-        .attr("y1", 500)
+        .attr("y1", 200)
         .attr("x2", width - 380)
-        .attr("y2", 500)
+        .attr("y2", 200)
         .attr("stroke", "#B7B3AD")
         .attr("stroke-width", 0.5);
 
