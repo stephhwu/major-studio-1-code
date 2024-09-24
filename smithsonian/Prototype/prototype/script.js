@@ -296,11 +296,14 @@ chartGroup.selectAll(".vertical-line")
 .attr("stroke-opacity", 0.7); // Adjust opacity here (0 is fully transparent, 1 is fully opaque)
 
 
+
 // Add paragraphs to specific ranges
 const paragraphs = [
     {
-        range: "10-20 meters",
-        text: "The epipelagic zone is a dynamic and biologically rich layer where sunlight drives primary production, supporting a diverse array of life. Phytoplankton thrive here, serving as the foundation of the food web and sustaining swarms of krill, zooplankton, and gelatinous species like jellyfish. It's home to a variety of invertebrates, from planktonic gastropods such as sea butterflies to drifting siphonophores like the Portuguese Man o' War. These organisms play crucial roles in nutrient cycling and energy transfer, making this zone an essential hub of oceanic biodiversity and ecological interactions."
+        range: "20-30 meters",
+        text: "The epipelagic zone is a dynamic and biologically rich layer where sunlight drives primary production, supporting a diverse array of life. Phytoplankton thrive here, serving as the foundation of the food web and sustaining swarms of krill, zooplankton, and gelatinous species like jellyfish. It's home to a variety of invertebrates, from planktonic gastropods such as sea butterflies to drifting siphonophores like the Portuguese Man o' War. These organisms play crucial roles in nutrient cycling and energy transfer, making this zone an essential hub of oceanic biodiversity and ecological interactions.",
+        image: "images/gastropoda.png"
+
     },
     {
         range: "200-300 meters",
@@ -314,17 +317,30 @@ const paragraphs = [
 
 // Add the paragraphs to the right of the specific depth ranges
 paragraphs.forEach(paragraph => {
-    chartGroup.append("text")
+    const group = chartGroup.append("g")
+    .attr("transform", `translate(550, ${yScale(paragraph.range) - 150})`)
+
+    // Add image if present
+    if (paragraph.image) {
+        group.append("image")
+            .attr("xlink:href", paragraph.image)
+            .attr("width", 400)
+            .attr("height", 400)
+            .attr("x", 0)
+            .attr("y", -400);
+    }
+
+    group.append("text")
         .attr("class", "depth-paragraph")
-        .attr("x", 600)
-        .attr("y", yScale(paragraph.range))
+        .attr("x", 0)
+        .attr("y", 0)
         .attr("text-anchor", "start")
         .style("font-family", "'Inter', sans-serif")
         .style("font-size", "14px")
         .style("fill", "#B7B3AD")
-        .style("width", "300px")
+        .style("width", "370px")
         .text(paragraph.text)
-        .call(wrapText, 300);
+        .call(wrapText, 370);
 });
 // Function to wrap text
 function wrapText(text, width) {
