@@ -4,18 +4,130 @@ body {
     color: #B7B3AD;
 }
 
-/* .bubble {
-    opacity: 0.7;
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    text-align: center;
+    max-width: 700px;
+    font-size: 44px;
+    margin: 0 auto; /* Center the h2 horizontally */
+    padding-top: 20px;
+
 }
 
-.bubble:hover {
-    opacity: 1;
-} */
+h3 {
+    font-family: 'Inter', sans-serif; /* Set the font to Inter */
+    text-align: center;
+    font-size: 16px;
+    font-weight: lighter;
+    margin-top: 20px; /* Keep the top margin */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    opacity: 0.5;
+    max-width: 600px;
+}
+
+
+#footer {
+    padding-bottom: 100px;
+}
+#footer-text {
+    text-align: center;
+    font-family: Garamond, serif;
+    /* font-style: italic; */
+    font-size: 20px;
+    max-width: 650px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: rgba(183, 179, 173, 0.5); /* Full opacity for <em> text */
+}
+
+#footer-text em {
+    color: rgba(183, 179, 173, 1); /* Full opacity for <em> text */
+}
+
+#back-to-top-button {
+    margin-top: 20px;
+    width: 250px;
+    padding: 30px 30px;
+    cursor: pointer;
+    font-family: Garamond, serif; 
+    border-radius: 40px; 
+    background: linear-gradient(90deg, rgba(183, 179, 173, 0.30) 0%, rgba(76, 85, 94, 0.30) 100%);
+    border: none; /* Optional: removes the default border */
+    text-align: center; /* Center text in button */
+    display: inline-block; /* Ensure it can be centered */
+    color: #B7B3AD;
+    font-size: 16px;
+
+}
+
+
+#chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#instruction-text {
+    text-align: center;
+    font-family: Garamond, serif;
+    font-style: italic;
+    font-size: 24px;
+    padding-top: 200px;
+    max-width: 500px;
+}
+
+.down-arrow {
+    position: absolute;
+    top: calc(290vh - 80px);
+    left: calc(50% - 14px);
+    width: 0;
+    height: 30px;
+    border: 2px solid;
+    border-radius: 2px;
+    animation: jumpInfinite 1.5s infinite;
+  }
+  
+  .down-arrow:after {
+    content: " ";
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    width: 16px;
+    height: 16px;
+    border-bottom: 4px solid;
+    border-right: 4px solid;
+    border-radius: 4px;
+    transform: rotateZ(45deg);
+  }
+  
+  @keyframes jumpInfinite {
+    0% {
+      margin-top: 0;
+    }
+    50% {
+      margin-top: 20px;
+    }
+    100% {
+      margin-top: 0;
+    }
+  }
 
 #chart {
     display: flex;
     justify-content: center; /* Center horizontally */
+    margin-top: 0;
+    padding-top: 0;
 }
+
+
+#chart1 {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-top: 100px;
+}
+
 
 
 
@@ -26,6 +138,7 @@ body {
 }
 
 .title {
+    font-family: 'Cormorant Garamond', serif;
     text-align: center;
     font-size: 96px;
     margin-bottom: 5px;
@@ -46,8 +159,9 @@ body {
 .subtext {
     text-align: center;
     font-size: 24px;
+    opacity: 0.5;
     font-family: 'Inter', sans-serif;
-    margin-top: 5px; /* Reduced space above the subtext */
+    margin-top: 20px; /* Reduced space above the subtext */
     width: 30%; /* Control width to force line breaks */
     margin-left: auto; /* Center the text */
     margin-right: auto; /* Center the text */
@@ -58,13 +172,13 @@ body {
 .image-container {
     display: flex;
     justify-content: center; /* Center the images in the container */
-    gap: 170px; /* Adjust the spacing between the images */
+    gap: 160px; /* Adjust the spacing between the images */
     margin: 20px auto; /* Add some margin around the container */
 }
 
 .image-container img {
     margin-top: 120px;
-    width: 400px; /* Set the width of the main images */
+    width: 350px; /* Set the width of the main images */
     height: auto; /* Maintain aspect ratio */
 }
 
@@ -77,6 +191,8 @@ body {
     text-align: center; /* Center the content inside this wrapper */
 
 }
+
+
 
 .hover-image {
     position: absolute; /* Allows for free positioning */
@@ -92,7 +208,7 @@ body {
 .image-text {
     font-family: 'Inter', sans-serif; /* Set the font */
     color: #B7B3AD; /* Text color */
-    margin-top: 40px; /* Adjust the space above the text */
+    margin-top: 20px; /* Adjust the space above the text */
     font-size: 18px; /* Adjust font size */
 }
 
@@ -187,15 +303,6 @@ body {
     pointer-events: none;
 }
 
-
-
-
-
-
-
-
-
-
 #depth-images-container {
     position: fixed;
     top: 50%;
@@ -255,7 +362,7 @@ a {
 
 .image-text {
     color: #B7B3AD; /* Text color */
-    margin-top: 10px; /* Space above the text */
+    margin-top: 35px; /* Space above the text */
     font-size: 18px; /* Adjust font size */
     line-height: 1.5; /* Adjust line height for spacing between lines */
     text-align: center; /* Center align text if needed */
@@ -310,4 +417,118 @@ a {
     width: 100%;
     height: auto;
     max-width: 1400px;
+}
+
+.instruction-container {
+    position: relative; /* Ensure the container is a positioning context for children */
+    text-align: center; /* Center the content inside */
+    margin-top: 20px; /* Add some space above the container */
+}
+
+
+.arrows {
+	width: 30px;
+	height: 36px;
+	position: sticky;
+	top: 20px; /* Use top to make it sticky from the top of the viewport */
+	left: 50%;
+	margin-left: -30px; /* Centers it horizontally */
+	z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.arrows path {
+	stroke: #32393F;
+	fill: transparent;
+	stroke-width: 1px;	
+	animation: arrow 5s infinite;
+	-webkit-animation: arrow 5s infinite; 
+}
+
+@keyframes arrow {
+  0% {opacity:0}
+  40% {opacity:1}
+  80% {opacity:0}
+  100% {opacity:0}
+}
+
+@-webkit-keyframes arrow {
+  0% {opacity:0}
+  40% {opacity:1}
+  80% {opacity:0}
+  100% {opacity:0}
+}
+
+.arrows path.a1 {
+	animation-delay:-1s;
+	-webkit-animation-delay:-1s; /* Safari and Chrome */
+}
+
+.arrows path.a2 {
+	animation-delay:-0.5s;
+	-webkit-animation-delay:-0.5s; /* Safari and Chrome */
+}
+
+.arrows path.a3 {
+	animation-delay:0s;
+	-webkit-animation-delay:0s; /* Safari and Chrome */
+}
+
+.sticky-image {
+position: sticky;    
+pointer-events: none;  /* This prevents the image from interfering with chart interactions */
+top: 0;
+}
+
+#sticky-image-container {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: 200px;
+    z-index: 1000;
+}
+
+#sticky-image {
+    position: sticky;
+    top: 20px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#rectangles-container {
+    display: flex;
+    justify-content: center; /* Centering the rectangles horizontally */
+    align-items: center; /* Aligning items vertically in the center */
+    padding-top: 50px;
+}
+
+.rectangle {
+    height: 106px; /* Set the height of the rectangles */
+    margin-right: 22px; /* Space between rectangles */
+}
+
+
+/* Tooltip styles */
+.rectangle-container {
+    position: relative; /* Position for the tooltip */
+}
+
+.rectangle-container[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%; /* Position below the rectangle */
+    font-family: 'Inter', sans-serif; /* Set the font */
+    width: 300px;
+    background-color: rgba(58, 59, 64, 0.7);
+    color: #B7B3AD;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px;
+    z-index: 10; /* Ensure tooltip appears above other elements */
+}
+
+.sticky-image {
+    will-change: transform;
 }

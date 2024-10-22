@@ -1,3 +1,5 @@
+
+
 // Depth groups
 const depthGroups = [
     "0-10 meters", "10-20 meters", "20-30 meters", "30-40 meters", 
@@ -31,6 +33,44 @@ d3.json("everything.json").then(data => {
         .append("svg")
         .attr("width", width)
         .attr("height", height);
+
+// Add this right after you create the SVG, before any other elements
+const topImage = svg.append("image")
+    .attr("href", "images/epipelagic-modal.png")
+    .attr("x", 900)
+    .attr("y", 105)
+    .attr("width", 302)
+    .attr("height", 963)
+    .attr("class", "sticky-image"); // Add a class for easier selection
+
+// Add scroll event listener
+const originalImageY = 105; // Store the original Y position
+const stickyOffset = 10; // Distance from top when sticky
+
+window.addEventListener('scroll', function() {
+    // Get the SVG container's bounds
+    const svgRect = svg.node().getBoundingClientRect();
+    const imageRect = topImage.node().getBoundingClientRect();
+    
+    // Calculate when the image should become sticky
+    const scrollThreshold = svgRect.top + originalImageY;
+    
+    if (-scrollThreshold > -stickyOffset) {
+        // Make the image sticky by updating its y position
+        const newY = Math.abs(svgRect.top) + stickyOffset;
+        
+        // Check if we're near the bottom of the SVG
+        const svgBottom = svgRect.height - imageRect.height - stickyOffset;
+        const finalY = Math.min(newY, svgBottom);
+        
+        topImage.attr("y", finalY);
+    } else {
+        // Reset to original position
+        topImage.attr("y", originalImageY);
+    }
+});
+
+        
     
     // Add a group for the legend
 // Reference the new SVG inside the div
@@ -162,12 +202,12 @@ circleData.forEach((d, i) => {
     // Create scale for bubble position
     const yScale = d3.scalePoint()
         .domain(depthGroups)
-        .range([300, height - 200]);
+        .range([200, height - 200]);
 
     // Create x scale for spacing
     const xScale = d3.scalePoint()
         .domain(bubbleData.map((d, i) => i))  // Use indices for x positioning
-        .range([width / 7 + 50, (3 * width) / 4 + 50]);  // Shifted to the right by adding 50
+        .range([width / 7 + 10, (3 * width) / 4 + 10]);  // Shifted to the right by adding 50
 
     // Create a group for the chart
     const chartGroup = svg.append("g")
@@ -187,7 +227,7 @@ chartGroup.selectAll(".bubble")
     .enter()
     .append("circle")
     .attr("class", "bubble")
-    .attr("cx", (d, i) => xScale(i))
+    .attr("cx", width / 6) // Use a fixed x position for all bubbles
     .attr("cy", d => yScale(d.group))
     .attr("r", d => sizeScale(d.count))
     .attr("fill", "url(#bubbleGradient)")
@@ -284,104 +324,27 @@ chartGroup.selectAll(".bubble")
         .text(d => d);
     
     // After creating bubbles, add vertical lines
-chartGroup.selectAll(".vertical-line")
-.data(bubbleData)
-.enter()
-.append("line")
-.attr("class", "vertical-line")
-.attr("x1", (d, i) => xScale(i)) // X position of the bubble
-.attr("y1", 500) // Start at the top of the horizontal line
-.attr("x2", (d, i) => xScale(i)) // X position of the bubble
-.attr("y2", d => yScale(d.group) - sizeScale(d.count)) // Go to the top of the bubble
-.attr("stroke", "#B7B3AD")
-.attr("stroke-width", 0.15)
-.attr("stroke-opacity", 0.7); // Adjust opacity here (0 is fully transparent, 1 is fully opaque)
+// chartGroup.selectAll(".vertical-line")
+// .data(bubbleData)
+// .enter()
+// .append("line")
+// .attr("class", "vertical-line")
+// .attr("x1", (d, i) => xScale(i)) // X position of the bubble
+// .attr("y1", 100) // Start at the top of the horizontal line
+// .attr("x2", (d, i) => xScale(i)) // X position of the bubble
+// .attr("y2", d => yScale(d.group) - sizeScale(d.count)) // Go to the top of the bubble
+// .attr("stroke", "#B7B3AD")
+// .attr("stroke-width", 0.15)
+// .attr("stroke-opacity", 0.7); // Adjust opacity here (0 is fully transparent, 1 is fully opaque)
 
-
-
-// Add paragraphs to specific ranges
-const paragraphs = [
-    {
-        range: "20-30 meters",
-        text: "The epipelagic zone is a dynamic and biologically rich layer where sunlight drives primary production, supporting a diverse array of life. Phytoplankton thrive here, serving as the foundation of the food web and sustaining swarms of krill, zooplankton, and gelatinous species like jellyfish. It's home to a variety of invertebrates, from planktonic gastropods such as sea butterflies to drifting siphonophores like the Portuguese Man o' War. These organisms play crucial roles in nutrient cycling and energy transfer, making this zone an essential hub of oceanic biodiversity and ecological interactions.",
-        image: "images/gastropoda.png"
-
-    },
-    {
-        range: "200-300 meters",
-        text: "This layer serves as a critical transition between the sunlit surface and the dark, abyssal depths, hosting a unique assemblage of life adapted to low light and cooler temperatures. Here, bioluminescent organisms, such as certain species of squid and fish, utilize light to attract prey and communicate, creating a mesmerizing underwater spectacle. Invertebrates, including gelatinous species and deep-sea krill, thrive in this zone, playing essential roles in the vertical migration of nutrients and energy between the surface and deeper waters."
-    },
-    {
-        range: "1000-2000 meters",
-        text: "This depth presents extreme conditions, including high pressure, low temperatures, and complete darkness, creating a unique habitat for specially adapted organisms. Life in the bathypelagic zone is sparse but fascinating, with bioluminescent creatures like deep-sea fish, squids, and various invertebrates using light to attract prey or communicate. These adaptations allow them to thrive in an environment where food is scarce, relying on the slow descent of organic material from above or engaging in vertical migrations to feed.",
-        image: "images/primno.png"
-
-    }
-];
-
-// Add the paragraphs to the right of the specific depth ranges
-paragraphs.forEach(paragraph => {
-    const group = chartGroup.append("g")
-    .attr("transform", `translate(550, ${yScale(paragraph.range) - 150})`)
-
-    // Add image if present
-    if (paragraph.image) {
-        group.append("image")
-            .attr("xlink:href", paragraph.image)
-            .attr("width", 400)
-            .attr("height", 400)
-            .attr("x", 0)
-            .attr("y", -450);
-    }
-
-    group.append("text")
-        .attr("class", "depth-paragraph")
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("text-anchor", "start")
-        .style("font-family", "'Inter', sans-serif")
-        .style("font-size", "14px")
-        .style("fill", "#B7B3AD")
-        .style("width", "370px")
-        .text(paragraph.text)
-        .call(wrapText, 350);
-});
-// Function to wrap text
-function wrapText(text, width) {
-    text.each(function () {
-        const textElement = d3.select(this);
-        const words = textElement.text().split(/\s+/).reverse();
-        let line = [];
-        let lineNumber = 0;
-        const lineHeight = 1.1; // ems
-        const y = textElement.attr("y");
-        const x = textElement.attr("x");
-        let tspan = textElement.text(null).append("tspan").attr("x", x).attr("y", y);
-
-        let word;
-        while ((word = words.pop())) {
-            line.push(word);
-            tspan.text(line.join(" "));
-            if (tspan.node().getComputedTextLength() > width) {
-                line.pop();
-                tspan.text(line.join(" "));
-                line = [word];
-                tspan = textElement.append("tspan")
-                    .attr("x", x)
-                    .attr("y", y)
-                    .attr("dy", `${++lineNumber * lineHeight}em`)
-                    .text(word);
-            }
-        }
-    });
-}
+//this is where modal used to be appended. 
 
 
 
     // Add vertical line
     chartGroup.append("line")
         .attr("x1", 125)
-        .attr("y1", 200)
+        .attr("y1", 100)
         .attr("x2", 125)
         .attr("y2", height - 10)
         .attr("stroke", "#B7B3AD")
@@ -390,9 +353,9 @@ function wrapText(text, width) {
     // Add horizontal line at the top
     chartGroup.append("line")
         .attr("x1", 125)
-        .attr("y1", 200)
+        .attr("y1", 100)
         .attr("x2", width - 380)
-        .attr("y2", 200)
+        .attr("y2", 100)
         .attr("stroke", "#B7B3AD")
         .attr("stroke-width", 0.5);
 
@@ -416,19 +379,62 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Append arrows next to the y-axis labels
+const arrowGroup = chartGroup.append("g")
+    .attr("class", "arrow-group")
+    .attr("transform", "translate(-60, 0)"); // Position arrows to the left of the y-axis
+
+// Append animated arrows next to each depth label
+arrowGroup.selectAll(".arrows")
+    .data(depthGroups)
+    .enter()
+    .append("svg")
+    .attr("class", "arrows")
+    .attr("x", -30) // Adjust to center smaller arrows
+    // .attr("y", 450)
+    .attr("y", d => yScale(d) - 20) // Adjust the y position to align with the labels
+    .attr("width", 30) // Adjusted width
+    .attr("height", 40) // Adjusted height
+    .html(`
+        <path class="a1" d="M0 0 L15 16 L30 0"></path> <!-- Adjusted coordinates for smaller size -->
+        <path class="a2" d="M0 10 L15 26 L30 10"></path> <!-- Adjusted coordinates for smaller size -->
+        <path class="a3" d="M0 20 L15 36 L30 20"></path> <!-- Adjusted coordinates for smaller size -->
+    `);
+
+
 });
 
-// d3.selectAll(".hover-image")
-//     .on("mouseover", function(event, d) {
-//         const tooltip = d3.select(this.parentNode).select(".tooltip");
-//         tooltip.style("visibility", "visible")
-//                .text("The uppermost layer of the ocean that receives abundant sunlight. It supports diverse marine life, including phytoplankton and various fish species, and is crucial for photosynthesis, making it highly productive within the ocean's food web.") // Update this to set specific text if needed
-//                .style("top", (event.pageY - 400) + "px")
-//                .style("left", (event.pageX + 5) + "px");
-//     })
-    
-//     .on("mouseout", function() {
-//         const tooltip = d3.select(this.parentNode).select(".tooltip");
-//         tooltip.style("visibility", "hidden");
-//     });
+// const paragraphs = [
+//     {
+//         range: "20-30 meters",
+//         image: "images/epipelagic-modal.png"
+//     },
+//     {
+//         range: "200-300 meters",
+//         image: "images/mesophotic-modal.png"
+//     },
+//     {
+//         range: "1000-2000 meters",
+//         image: "images/benthic-modal.png"
+//     }
+// ];
 
+// // Add the images to the right of the specific depth ranges
+// paragraphs.forEach(paragraph => {
+//     const group = chartGroup.append("g")
+//     .attr("transform", `translate(550, ${yScale(paragraph.range) - 150})`)
+//     .attr("class", "group-style");  // Apply a class to the group
+
+
+//     // Add image if present
+//     if (paragraph.image) {
+//         group.append("image")
+//             .attr("xlink:href", paragraph.image)
+//             .attr("width", 290)
+//             .attr("height", 873)
+//             .attr("x", 300)
+//             .attr("y", -700)
+//             .attr("class", "image-style");  // Apply a class to the image
+
+//     }
+// });

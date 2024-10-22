@@ -15,12 +15,16 @@
         <span class="surface"> the Surface</span>
     </h1>
     <p class="subtext">Mapping Invertebrate Diversity in the Smithsonian Collection</p>
+
     <div class="image-container">
         <div class="image-wrapper">
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
-                <span class="tooltip">This is where most marine life thrives due to abundant sunlight for photosynthesis.</span>
-            </div>
+                <span class="tooltip">
+                    <p>This is where most marine life thrives due to abundant sunlight for photosynthesis.</p>
+                    <p style="font-size: 12px; opacity: 0.5">Pictured: Echiuridae (Spoon worm)</p>
+                </span>           
+             </div>
                         <img src="images/01.jpg" alt="Image 01">
             <p class="image-text">Epipelagic Zone<br>(Sunlight Zone)</p>
             <div class="rectangle-container"> <!-- New container for positioning -->
@@ -30,10 +34,15 @@
   
          </div>
         
+
+         
         <div class="image-wrapper">
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
-                <span class="tooltip">Where light gradually diminishes. Many bioluminescent organisms inhabit this mysterious realm.</span>
+                <span class="tooltip">
+                    <p>Where light gradually diminishes. Many bioluminescent organisms inhabit this mysterious realm.</p>
+                    <p style="font-size: 12px; opacity: 0.5">Pictured: Falsimargarita gemma (Iridescent Antarctic snail)</p>
+                </span>
             </div>
             <img src="images/02.jpg" alt="Image 02">
             <p class="image-text">Mesopelagic Zone<br>(Twilight Zone)</p>
@@ -47,7 +56,10 @@
         <div class="image-wrapper">
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
-                <span class="tooltip">Zone of perpetual darkness. Strange and often translucent creatures adapted to extreme pressure live here.</span>
+                <span class="tooltip">
+                    <p>Zone of perpetual darkness. Strange and often translucent creatures adapted to extreme pressure live here.</p>
+                    <p style="font-size: 12px; opacity: 0.5">Pictured: Primno macropa (Pelagic amphipod)</p>
+                </span>
             </div>            <img src="images/03.jpg" alt="Image 03">
             <p class="image-text">Bathypelagic Zone<br>(Midnight Zone)</p>
             <div class="rectangle-container"> <!-- New container for positioning -->
@@ -55,24 +67,96 @@
                 <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>
         </div>
+        
 
     </div>
+
+    <div id="rectangle-title">
+        <h2>Visualizing Depths Beyond the Bathypelagic Zone</h2>
+        <h3>While the Smithsonian Collections Invertebrates have been explored up to depths of 4,000 meters, you can discover more about other fascinating oceanic zones by hovering over them.</h3>
+    </div>
+    
+    <div id="rectangles-container">
+        <div class="rectangle-container" data-tooltip="The epipelagic zone experiences significant temperature variations due to sunlight and heat, ranging from 97°F (36°C) in the Persian Gulf to 28°F (-2°C) near the North Pole.">
+            <div class="rectangle" style="width: 23px; background-color: rgba(244, 154, 171, 0.3);"></div>
+        </div>
+        <div class="rectangle-container" data-tooltip="The mesopelagic zone experiences significant temperature changes due to the thermocline—a layer where water temperature drops rapidly with depth. This transition varies seasonally, being strongest in the tropics and nearly absent in polar winters.">
+            <div class="rectangle" style="width: 86px; background: linear-gradient(90deg, rgba(223, 160, 177, 0.70) 0%, rgba(202, 165, 184, 0.70) 100%); opacity: 0.4;"></div>
+        </div>
+        <div class="rectangle-container" data-tooltip="In the bathypelagic zone, temperatures remain constant at around 39°F (4°C), while pressure exceeds 5,850 pounds per square inch at 4,000 meters. Despite these extreme conditions, sperm whales dive to this depth in search of food.">
+            <div class="rectangle" style="width: 320px; background: linear-gradient(90deg, rgba(202, 165, 184, 0.70) 45.5%, rgba(180, 171, 190, 0.70) 100%); opacity: 0.4;"></div>
+        </div>
+        <div class="rectangle-container" data-tooltip="The Abyssopelagic Zone ranges from 4,000 to 6,000 meters deep. At these crushing depths, water temperatures are near freezing, and only a few resilient creatures inhabit the area.">
+            <div class="rectangle" style="width: 213px; background: linear-gradient(90deg, rgba(180, 171, 190, 0.70) 46.51%, rgba(159, 177, 196, 0.70) 99.87%); opacity: 0.4;"></div>
+        </div>
+        <div class="rectangle-container" data-tooltip="The hadalpelagic zone ranges from 6,000 to 10,994 meters in the Mariana Trench. Temperatures are just above freezing, and pressure exceeds 8 tons per square inch.">
+            <div class="rectangle" style="width: 536px; background: linear-gradient(90deg, rgba(159, 177, 196, 0.40) 0%, rgba(76, 85, 94, 0.40) 100%); opacity: 0.7;"></div>
+        </div>
+    </div>
+    
+
     <div id="legend-container">
         <svg id="legend-svg" viewBox="0 0 1728 500"></svg>
     </div>
+
+    <div id="chart1-container">
+        <h2>Overview of Image Count Across Different Depth Intervals</h2>
+        <h3>A logarithmic scale was used to account for fewer images as depth increases. Hover to see number of images at each interval.</h3>
+        <div id="chart1"></div>
+        <script src="script1.js"></script>
+    </div>
+
+    <div id="chartTooltip" style="position: absolute; opacity: 0;">
+        <div class="chart-tooltip"></div>
+    </div>
+
+    <div id="sticky-image-container">
+        <img src="images/epipelagic-modal.png" alt="Epipelagic Zone" id="sticky-image" class="sticky">
+    </div>
     
+
 <!-- Text that will change on circle click -->
-<div id="instruction-text" style="text-align: center; font-family: Garamond, serif; font-style: italic; margin-top: 10px; font-size: 24px;">
-    Click on a circle to explore images at each depth interval
+<div id="chart-container" style="display: flex; flex-direction: column; align-items: center;">
+    <div id="instruction-text" style="text-align: center; font-family: Garamond, serif; font-style: italic; font-size: 24px;">
+        <p>Scroll and hover on a circle to see the number of images at each depth interval.</p>
+        <p>Click on a circle to explore images at each depth interval.</p>
+    </div>
+
+    <div class="down-arrow"></div>
+
+    <div id="chart"></div>
+
+
+
+    <div id="image-container"></div>
+    <div id="depth-images-container" style="display: none;"></div>
 </div>
 
-    
-    
-    <div id="chart"></div>
-    <script src="script.js"></script>
-    <div id="image-container"></div>
 
-    <div id="depth-images-container" style="display: none;"></div>
+
+<script src="script.js"></script>
+
+
+<div id="footer" style="display: flex; flex-direction: column; align-items: center;">
+    <div id="footer-text">
+        <p>Congratulations! You've reached the deepest section of the Smithsonian Collections Invertebrate Zoology Images.</p>
+
+        <p>Among the depths, the deepest recorded invertebrate species captured by the Smithsonian Collection is the <em>Galatheabdella brunni</em>, a fish leech found at a remarkable depth of <em>3,944 meters</em>.</p>
+    </div>
+
+    <button id="back-to-top-button" onclick="scrollToChart()">
+        Back to Top
+    </button>
+    
+    <script>
+    function scrollToChart() {
+        const chart = document.getElementById('chart');
+        chart.scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
+</div>
+
+
 
 </body>
 </html>
