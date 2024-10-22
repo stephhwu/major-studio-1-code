@@ -22,54 +22,125 @@
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
                 <span class="tooltip">
                     <p>This is where most marine life thrives due to abundant sunlight for photosynthesis.</p>
-                    <p style="font-size: 12px; opacity: 0.5">Pictured: Echiuridae (Spoon worm)</p>
+                    <p style="font-size: 12px; opacity: 0.5">Pictured: Spoon worm, bobtail squid, gastropoda</p>
                 </span>           
-             </div>
-                        <img src="images/01.jpg" alt="Image 01">
+            </div>
+            <img id="main-image" src="images/01.jpg" alt="Image 01">
+            <img id="image-b" src="images/01-b.jpg" alt="Image 01-b" style="display:none;">
+            <img id="image-c" src="images/01-c.jpg" alt="Image 01-c" style="display:none;">
             <p class="image-text">Epipelagic Zone<br>(Sunlight Zone)</p>
             <div class="rectangle-container"> <!-- New container for positioning -->
                 <p class="rectangle-text">0 - 200 meters</p> <!-- Text on top -->
                 <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>
-  
-         </div>
+        </div>
         
-
+        <script>
+            const images = [
+                document.getElementById('main-image'),
+                document.getElementById('image-b'),
+                document.getElementById('image-c')
+            ];
+            let currentIndex = 0;
+    
+            function changeImage() {
+                // Hide the current image
+                images[currentIndex].style.display = 'none';
+    
+                // Update index
+                currentIndex = (currentIndex + 1) % images.length;
+    
+                // Show the next image
+                images[currentIndex].style.display = 'block';
+            }
+    
+            // Start the image changing every 3 seconds
+            setInterval(changeImage, 4000);
+        </script>
          
         <div class="image-wrapper">
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
                 <span class="tooltip">
                     <p>Where light gradually diminishes. Many bioluminescent organisms inhabit this mysterious realm.</p>
-                    <p style="font-size: 12px; opacity: 0.5">Pictured: Falsimargarita gemma (Iridescent Antarctic snail)</p>
+                    <p style="font-size: 12px; opacity: 0.5">Pictured: Iridescent Antarctic snail, Solaster caribbaeus Verrill, Hyalocylis striata</p>
                 </span>
             </div>
-            <img src="images/02.jpg" alt="Image 02">
+            <img id="main-image-2" src="images/02.jpg" alt="Image 02">
+            <img id="image-b-2" src="images/02-b.jpg" alt="Image 02-b" style="display:none;">
+            <img id="image-c-2" src="images/02-c.jpg" alt="Image 02-c" style="display:none;">
             <p class="image-text">Mesopelagic Zone<br>(Twilight Zone)</p>
             <div class="rectangle-container"> <!-- New container for positioning -->
                 <p class="rectangle-text">200 - 1,000 meters</p> <!-- Text on top -->
                 <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>       
- 
-         </div>
-        
+        </div>
+    
+        <script>
+            const images2 = [
+                document.getElementById('main-image-2'),
+                document.getElementById('image-b-2'),
+                document.getElementById('image-c-2')
+            ];
+            let currentIndex2 = 0;
+    
+            function changeImage2() {
+                // Hide the current image
+                images2[currentIndex2].style.display = 'none';
+    
+                // Update index
+                currentIndex2 = (currentIndex2 + 1) % images2.length;
+    
+                // Show the next image
+                images2[currentIndex2].style.display = 'block';
+            }
+    
+            // Start the image changing every 3 seconds
+            setInterval(changeImage2, 4000);
+        </script>
+    
         <div class="image-wrapper">
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
                 <span class="tooltip">
                     <p>Zone of perpetual darkness. Strange and often translucent creatures adapted to extreme pressure live here.</p>
-                    <p style="font-size: 12px; opacity: 0.5">Pictured: Primno macropa (Pelagic amphipod)</p>
+                    <p style="font-size: 12px; opacity: 0.5">Pictured: Primno macropa, Eulimidae, Atolla jellyfish</p>
                 </span>
-            </div>            <img src="images/03.jpg" alt="Image 03">
+            </div>            
+            <img id="main-image-3" src="images/03.jpg" alt="Image 03">
+            <img id="image-b-3" src="images/03-b.jpg" alt="Image 03-b" style="display:none;">
+            <img id="image-c-3" src="images/03-c.jpg" alt="Image 03-c" style="display:none;">
             <p class="image-text">Bathypelagic Zone<br>(Midnight Zone)</p>
             <div class="rectangle-container"> <!-- New container for positioning -->
                 <p class="rectangle-text">1,000 - 4,000 meters</p> <!-- Text on top -->
                 <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>
         </div>
-        
-
+    
+        <script>
+            const images3 = [
+                document.getElementById('main-image-3'),
+                document.getElementById('image-b-3'),
+                document.getElementById('image-c-3')
+            ];
+            let currentIndex3 = 0;
+    
+            function changeImage3() {
+                // Hide the current image
+                images3[currentIndex3].style.display = 'none';
+    
+                // Update index
+                currentIndex3 = (currentIndex3 + 1) % images3.length;
+    
+                // Show the next image
+                images3[currentIndex3].style.display = 'block';
+            }
+    
+            // Start the image changing every 3 seconds
+            setInterval(changeImage3, 4000);
+        </script>
     </div>
+    
 
     <div id="rectangle-title">
         <h2>Visualizing Depths Beyond the Bathypelagic Zone</h2>
@@ -117,9 +188,9 @@
 
 <!-- Text that will change on circle click -->
 <div id="chart-container" style="display: flex; flex-direction: column; align-items: center;">
-    <div id="instruction-text" style="text-align: center; font-family: Garamond, serif; font-style: italic; font-size: 24px;">
-        <p>Scroll and hover on a circle to see the number of images at each depth interval.</p>
-        <p>Click on a circle to explore images at each depth interval.</p>
+    <div id="instruction-text">
+        <p><em>Scroll</em> and <em>hover</em> on a circle to see the number of images at each depth interval.</p>
+        <p><em>Click</em> on a circle to explore images at each depth interval.</p>
     </div>
 
     <div class="down-arrow"></div>
@@ -139,7 +210,7 @@
 
 <div id="footer" style="display: flex; flex-direction: column; align-items: center;">
     <div id="footer-text">
-        <p>Congratulations! You've reached the deepest section of the Smithsonian Collections Invertebrate Zoology Images.</p>
+        <p>Congratulations! You've reached the deepest section of the <em>Smithsonian Collections Invertebrate Zoology</em> Images.</p>
 
         <p>Among the depths, the deepest recorded invertebrate species captured by the Smithsonian Collection is the <em>Galatheabdella brunni</em>, a fish leech found at a remarkable depth of <em>3,944 meters</em>.</p>
     </div>

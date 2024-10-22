@@ -33,40 +33,97 @@ d3.json("everything.json").then(data => {
         .append("svg")
         .attr("width", width)
         .attr("height", height);
-
-// Add this right after you create the SVG, before any other elements
-const topImage = svg.append("image")
+        
+// Create all three images
+const epipelagicImage = svg.append("image")
     .attr("href", "images/epipelagic-modal.png")
     .attr("x", 900)
     .attr("y", 105)
-    .attr("width", 302)
-    .attr("height", 963)
-    .attr("class", "sticky-image"); // Add a class for easier selection
+    .attr("width", 298)
+    .attr("height", 950)
+    .attr("class", "sticky-image");
+
+const mesophoticImage = svg.append("image")
+    .attr("href", "images/mesophotic-modal.png")
+    .attr("x", 900)
+    .attr("y", 105)
+    .attr("width", 298)
+    .attr("height", 950)
+    .attr("class", "sticky-image")
+    .style("opacity", 0);
+
+const benthicImage = svg.append("image")
+    .attr("href", "images/benthic-modal.png")
+    .attr("x", 900)
+    .attr("y", 105)
+    .attr("width", 298)
+    .attr("height", 950)
+    .attr("class", "sticky-image")
+    .style("opacity", 0);
+
+// Store the original Y position and sticky offset
+const originalImageY = 105;
+const stickyOffset = 10;
 
 // Add scroll event listener
-const originalImageY = 105; // Store the original Y position
-const stickyOffset = 10; // Distance from top when sticky
-
 window.addEventListener('scroll', function() {
     // Get the SVG container's bounds
     const svgRect = svg.node().getBoundingClientRect();
-    const imageRect = topImage.node().getBoundingClientRect();
     
-    // Calculate when the image should become sticky
+    // Find both depth labels
+    const mesophoticDepthLabel = svg.selectAll('.depth-label')
+        .filter(d => d === "200-300 meters")
+        .node();
+    
+    const benthicDepthLabel = svg.selectAll('.depth-label')
+        .filter(d => d === "1000-2000 meters")
+        .node();
+    
+    if (!mesophoticDepthLabel || !benthicDepthLabel) return;
+    
+    const mesophoticBounds = mesophoticDepthLabel.getBoundingClientRect();
+    const benthicBounds = benthicDepthLabel.getBoundingClientRect();
+    
+    // Calculate scroll position
     const scrollThreshold = svgRect.top + originalImageY;
     
     if (-scrollThreshold > -stickyOffset) {
-        // Make the image sticky by updating its y position
+        // Calculate new Y position
         const newY = Math.abs(svgRect.top) + stickyOffset;
+        const finalY = Math.min(newY, svgRect.height - 963 - stickyOffset);
         
-        // Check if we're near the bottom of the SVG
-        const svgBottom = svgRect.height - imageRect.height - stickyOffset;
-        const finalY = Math.min(newY, svgBottom);
+        // Update Y positions for all images
+        epipelagicImage.attr("y", finalY);
+        mesophoticImage.attr("y", finalY);
+        benthicImage.attr("y", finalY);
         
-        topImage.attr("y", finalY);
+        // Handle transitions based on depth ranges
+        if (benthicBounds.top <= window.innerHeight / 2) {
+            // Show benthic image
+            epipelagicImage.style("opacity", 0);
+            mesophoticImage.style("opacity", 0);
+            benthicImage.style("opacity", 1);
+        } else if (mesophoticBounds.top <= window.innerHeight / 2) {
+            // Show mesophotic image
+            epipelagicImage.style("opacity", 0);
+            mesophoticImage.style("opacity", 1);
+            benthicImage.style("opacity", 0);
+        } else {
+            // Show epipelagic image
+            epipelagicImage.style("opacity", 1);
+            mesophoticImage.style("opacity", 0);
+            benthicImage.style("opacity", 0);
+        }
     } else {
-        // Reset to original position
-        topImage.attr("y", originalImageY);
+        // Reset to original positions
+        epipelagicImage.attr("y", originalImageY);
+        mesophoticImage.attr("y", originalImageY);
+        benthicImage.attr("y", originalImageY);
+        
+        // Reset opacities to initial state
+        epipelagicImage.style("opacity", 1);
+        mesophoticImage.style("opacity", 0);
+        benthicImage.style("opacity", 0);
     }
 });
 
@@ -231,7 +288,12 @@ chartGroup.selectAll(".bubble")
     .attr("cy", d => yScale(d.group))
     .attr("r", d => sizeScale(d.count))
     .attr("fill", "url(#bubbleGradient)")
+    .style("opacity", 0.7) // Set initial opacity to 0.7
     .on("mouseover", function(event, d) {
+        // Change opacity to 1 on hover
+        d3.select(this).style("opacity", 1);
+
+        // Tooltip logic
         chartTooltip.style("opacity", 1);
         chartTooltip.select(".chart-tooltip")
             .html(`${d.group}: ${d.count} items`)
@@ -240,13 +302,18 @@ chartGroup.selectAll(".bubble")
             .style("top", (event.pageY + 10) + "px");
     })
     .on("mouseout", function(d) {
+        // Revert opacity to 0.7 when mouse leaves
+        d3.select(this).style("opacity", 0.7);
+
+        // Hide the tooltip
         chartTooltip.style("opacity", 0);
         chartTooltip.select(".chart-tooltip")
             .style("visibility", "hidden");
-        })
-        .on("click", function(event, d) {
-            displayImagesForDepth(d.group);
+    })
+    .on("click", function(event, d) {
+        displayImagesForDepth(d.group);
     });
+
 
     function displayImagesForDepth(depthGroup) {
         // Filter the data for the selected depth group
@@ -358,6 +425,29 @@ chartGroup.selectAll(".bubble")
         .attr("y2", 100)
         .attr("stroke", "#B7B3AD")
         .attr("stroke-width", 0.5);
+    
+        // Add a dotted horizontal line at 200-300 meters
+    chartGroup.append("line")
+        .attr("x1", 150)  // Start from the left of the chart
+        .attr("x2", width -170)  // Extend to the right of the chart
+        .attr("y1", yScale("200-300 meters"))  // Position based on the yScale for 200-300 meters
+        .attr("y2", yScale("200-300 meters"))  // Same as y1 to keep it horizontal
+        .attr("stroke", "#B7B3AD")  // Line color
+        .attr("stroke-width", 1)  // Line thickness
+        .attr("stroke-dasharray", "5,5")
+        .attr("stroke-opacity", 0.5);  // set opacity of the stroke to 0.5  // Dotted line style (5px dash, 5px gap)
+
+       // Add a dotted horizontal line at 1000-2000 meters
+       chartGroup.append("line")
+        .attr("x1", 150)  // Start from the left of the chart
+        .attr("x2", width - 170)  // Extend to the right of the chart
+        .attr("y1", yScale("1000-2000 meters"))  // Position based on the yScale for 200-300 meters
+        .attr("y2", yScale("1000-2000 meters"))  // Same as y1 to keep it horizontal
+        .attr("stroke", "#B7B3AD")  // Line color
+        .attr("stroke-width", 1)  // Line thickness
+        .attr("stroke-dasharray", "5,5")
+        .attr("stroke-opacity", 0.5);  // set opacity of the stroke to 0.5  // Dotted line style (5px dash, 5px gap)
+       
 
 // Select all hover images and add event listeners
 document.addEventListener('DOMContentLoaded', function() {

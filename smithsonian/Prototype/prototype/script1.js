@@ -70,29 +70,37 @@ d3.json("everything.json").then(data => {
     // Tooltip element
     const chartTooltip = d3.select("#chartTooltip");
 
-    // Create bubbles
     g.selectAll(".bubble")
-        .data(bubbleData)
-        .enter()
-        .append("circle")
-        .attr("class", "bubble")
-        .attr("cx", d => xScale(d.group))
-        .attr("cy", height / 2)
-        .attr("r", d => sizeScale(d.count))
-        .attr("fill", "url(#bubbleGradient)") // Use the gradient for fill
-        .on("mouseover", function(event, d) {
-            chartTooltip.style("opacity", 1);
-            chartTooltip.select(".chart-tooltip")
-                .html(`${d.group}: ${d.count} items`)
-                .style("visibility", "visible");
-            chartTooltip.style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY + 10) + "px");
-        })
-        .on("mouseout", function() {
-            chartTooltip.style("opacity", 0);
-            chartTooltip.select(".chart-tooltip")
-                .style("visibility", "hidden");
-        });
+    .data(bubbleData)
+    .enter()
+    .append("circle")
+    .attr("class", "bubble")
+    .attr("cx", d => xScale(d.group))
+    .attr("cy", height / 2)
+    .attr("r", d => sizeScale(d.count))
+    .attr("fill", "url(#bubbleGradient)") // Use the gradient for fill
+    .style("opacity", 0.7) // Set initial opacity to 0.7
+    .on("mouseover", function(event, d) {
+        // Change opacity to 1 on hover
+        d3.select(this).style("opacity", 1);
+
+        // Tooltip logic
+        chartTooltip.style("opacity", 1);
+        chartTooltip.select(".chart-tooltip")
+            .html(`${d.group}: ${d.count} items`)
+            .style("visibility", "visible");
+        chartTooltip.style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY + 10) + "px");
+    })
+    .on("mouseout", function() {
+        // Revert opacity to 0.7 when mouse leaves
+        d3.select(this).style("opacity", 0.7);
+
+        // Hide the tooltip
+        chartTooltip.style("opacity", 0);
+        chartTooltip.select(".chart-tooltip")
+            .style("visibility", "hidden");
+    });
 
     // Add x-axis
     const xAxis = d3.axisBottom(xScale);
