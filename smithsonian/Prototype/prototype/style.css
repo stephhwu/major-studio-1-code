@@ -24,7 +24,7 @@ h3 {
     margin-left: auto; /* Center horizontally */
     margin-right: auto; /* Center horizontally */
     opacity: 0.5;
-    max-width: 600px;
+    max-width: 650px;
 }
 
 
@@ -48,22 +48,30 @@ h3 {
 
 #back-to-top-button {
     margin-top: 20px;
-    width: 250px;
-    padding: 30px 30px;
+    width: 200px;
+    padding: 20px 10px;
     cursor: pointer;
     font-family: Garamond, serif; 
     border-radius: 40px; 
-    background: linear-gradient(90deg, rgba(183, 179, 173, 0.30) 0%, rgba(76, 85, 94, 0.30) 100%);
-    border: none; /* Optional: removes the default border */
+border: 1px solid #B7B3AD;
+    background-color: transparent; /* Transparent background */
     text-align: center; /* Center text in button */
     display: inline-block; /* Ensure it can be centered */
     color: #B7B3AD;
     font-size: 16px;
+}
 
+#back-to-top-button:hover {
+    background-color: rgba(183, 179, 173, 0.1); /* Subtle background fill */
+    color: #FFFFFF; /* Brighter text on hover */
+    border-color: #FFFFFF; /* Brighter border on hover */
+    transform: translateY(-2px); /* Slight upward movement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 
 #chart-container {
+    position: relative; /* Add this to serve as positioning context */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,13 +94,15 @@ h3 {
 
 .down-arrow {
     position: absolute;
-    top: calc(290vh - 80px);
-    left: calc(50% - 14px);
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center alignment */
+    top: 110px; /* Adjust this value to position correctly below instruction text */
     width: 0;
     height: 30px;
     border: 2px solid;
     border-radius: 2px;
     animation: jumpInfinite 1.5s infinite;
+    z-index: 1; /* Ensure it appears above other elements */
   }
   
   .down-arrow:after {
@@ -146,20 +156,22 @@ h3 {
 .title {
     font-family: 'Cormorant Garamond', serif;
     text-align: center;
-    font-size: 96px;
+    font-size: 110px;
     margin-bottom: 5px;
-    margin-top: 100px;
+    margin-top: 10vh; /* Changed from fixed 100px to be more responsive */
 }
 
 .title .beneath {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: bold;
+    font-weight: 700;
     font-style: italic;
 }
 
 .title .surface {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: bold;
+    font-weight: 700;
+    opacity: 0.7;
+    font-style: normal;
 }
 
 .subtext {
@@ -167,8 +179,9 @@ h3 {
     font-size: 24px;
     opacity: 0.5;
     font-family: 'Inter', sans-serif;
-    margin-top: 20px; /* Reduced space above the subtext */
-    width: 30%; /* Control width to force line breaks */
+    font-weight: 300;
+    margin-top: 10px; /* Reduced space above the subtext */
+    width: 25%; /* Control width to force line breaks */
     margin-left: auto; /* Center the text */
     margin-right: auto; /* Center the text */
 }
@@ -178,8 +191,12 @@ h3 {
 .image-container {
     display: flex;
     justify-content: center; /* Center the images in the container */
-    gap: 160px; /* Adjust the spacing between the images */
+    gap: 30px; /* Adjust the spacing between the images */
     margin: 20px auto; /* Add some margin around the container */
+    margin-top: 5vh; /* Adjust based on your preference */
+    flex-grow: 1;
+    display: flex;
+    align-items: center; /* Center images vertically */
 }
 
 .image-container img {
@@ -205,35 +222,25 @@ h3 {
     top: 130px; /* Adjust this value to control how low the hover image appears */
     left: 50%; 
     transform: translateX(-50%); /* Center the hover image horizontally */
-    width: 80px !important; /* Force the width to be 60px */
+    width: 50px !important; /* Force the width to be 60px */
     max-width: 100px; /* Ensure the image doesn’t exceed this width */
     height: auto !important; /* Maintain aspect ratio */
     max-height: 90px; /* Set a maximum height */
 }
 
-.image-text {
-    font-family: 'Inter', sans-serif; /* Set the font */
-    color: #B7B3AD; /* Text color */
-    margin-top: 20px; /* Adjust the space above the text */
-    font-size: 18px; /* Adjust font size */
+
+
+.rectangle {
+    height: 106px; /* Set the height of the rectangles */
+    margin-right: 22px; /* Space between rectangles */
 }
-
-
 
 .rectangle-container {
     position: relative; /* Create a positioning context */
     display: inline-block; /* Allow for centering */
 }
 
-.rectangle-image {
-    display: block;
-    margin: 0 auto; /* Center the image */
-    width: 270px !important; /* Force the width to be 60px */
-    max-width: 320px; /* Ensure the image doesn’t exceed this width */
-    height: auto !important; /* Maintain aspect ratio */
-    max-height: 90px; /* Set a maximum height */
-    transform: translateY(-110px); /* Move the image up */
-}
+
 
 .rectangle-text {
     position: absolute; /* Position the text absolutely */
@@ -258,17 +265,17 @@ h3 {
     visibility: hidden;
     font-family: 'Inter', sans-serif; /* Set the font */
     width: 200px;
-    background-color: rgba(58, 59, 64, 0.7);
+    background-color: rgba(58, 59, 64, 0.9);
     color: #B7B3AD;
     text-align: center;
     border-radius: 6px;
     padding: 20px;
     position: absolute;
-    z-index: 1;
+    z-index: 100;
 
     
-    top: 140%; /* Increase to move further down */
-    left: 150%; /* Increase to move further to the right */
+    top: 150%; /* Increase to move further down */
+    left: 200%; /* Increase to move further to the right */
     /* transform: translateX(-50%); Keep centering adjustment */
     
     opacity: 0;
@@ -315,13 +322,15 @@ h3 {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #2A2B2F;
-    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     max-width: 80%;
     max-height: 80%;
-    overflow-y: auto;
-    z-index: 1000; /* Ensure it's above other elements */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Remove padding as it will be handled by child elements */
+    overflow: hidden; /* Hide overflow for container, but allow scrolling in content area */
 }
 
 .depth-image {
@@ -338,26 +347,31 @@ h3 {
 
 /* Style for the close button */
 #depth-images-container button {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    padding: 10px 20px; /* Increased padding for size */
-    font-size: 16px; /* Adjust font size */
-    background-color: #9FB1C4;
-    color: #060608;
-    border: none;
-    border-radius: 20px;
+  background-color: transparent;
+    color: #B7B3AD;
+    border: 1px solid #B7B3AD;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
     cursor: pointer;
+    margin-left: 15px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: relative;
 }
 
 #depth-images-container button:hover {
-    background-color: #728591;
-}
+ color: white;
+    border-color: white;}
 
 .depth-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 40px; /* Desired font size */
-    text-align: center;
+    font-size: 35px; /* Desired font size */
+    text-align: left;
     font-weight: bold; /* If you want to keep the bold style */
 }
 
@@ -367,79 +381,334 @@ a {
 }
 
 .image-text {
-    color: #B7B3AD; /* Text color */
-    margin-top: 35px; /* Space above the text */
-    font-size: 18px; /* Adjust font size */
-    line-height: 1.5; /* Adjust line height for spacing between lines */
-    text-align: center; /* Center align text if needed */
+    margin-top: 40px; /* Space above the text */
+    text-align: center; /* Center align text */
 }
 
-.depth-image p {
-    margin: 0; /* Remove default margins */
-    line-height: 1.4; /* Adjust this value for line spacing */
-    font-family: 'Inter', sans-serif; /* Set default font for paragraphs */
+.zone-name {
+    color: #B7B3AD;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 35px;
+    font-style: italic;
+    opacity: 0.8;
+    font-weight: 700;
+    display: block;
+    margin-bottom: -10px; /* Add negative margin to reduce space */
 }
 
-.depth-image .title {
-    font-family: 'Cormorant Garamond', serif !important;
-    font-weight: bold; /* Optional: make it bold */
-    margin: 0; /* Remove default margins */
+.zone-depth {
+    color: #B7B3AD;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    opacity: 0.5;
+    font-style: normal;
+    font-weight: 200;
+    display: block;
+    margin-top: 0; /* Remove default top margin */
 }
 
-
-#depth-images-container .close-button {
-    position: fixed;
-    top: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    z-index: 1000; /* Ensure it's above other elements */
-    background-color: #B7B3AD; /* Button color */
-    color: white; /* Text color */
-    border: none; /* No border */
-    padding: 10px 15px; /* Padding */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor */
-    border-radius: 5px; /* Rounded corners */
+/* Tooltip styles */
+.rectangle-container {
+    position: relative; /* Position for the tooltip */
+    
 }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 999; /* Below the close button */
+.rectangle-container[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%; /* Position below the rectangle */
+    font-family: 'Inter', sans-serif; /* Set the font */
+    width: 300px;
+    background-color: rgba(58, 59, 64, 0.7);
+    color: #B7B3AD;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px;
+    z-index: 10; /* Ensure tooltip appears above other elements */
 }
 
-#legend-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    max-width: 1400px; /* Match the SVG width */
+.sticky-image {
+    will-change: transform;
+}
+
+/* Image grid container */
+.image-grid-container {
+   display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;     /* Keep horizontal spacing at 20px */
+    row-gap: 40px;        /* Increase vertical spacing to 40px or your preferred value */
+    padding: 20px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-#legend-svg {
+/* Individual image container */
+.depth-image {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.2s;
+    height: 100%;
+}
+
+.depth-image:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Image wrapper to control dimensions and cropping */
+.image-wrapper-grid {
+    width: 290px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Image styling to ensure consistent sizing and zoom/crop effect */
+.depth-image img {
     width: 100%;
-    height: auto;
-    max-width: 1400px;
+    height: 100%;
+    object-fit: cover; /* This is key for zooming/cropping */
+    object-position: center; /* Centers the image */
 }
 
-.instruction-container {
-    position: relative; /* Ensure the container is a positioning context for children */
-    text-align: center; /* Center the content inside */
-    margin-top: 20px; /* Add some space above the container */
+/* Text styling within the grid */
+.depth-image p {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Link styling */
+.depth-image a {
+    margin-top: auto; /* Pushes the link to the bottom */
+    padding: 5px 0;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .image-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .image-grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Modal container - update existing style */
+#depth-images-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2A2B2F;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    max-width: 80%;
+    max-height: 80%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Remove padding as it will be handled by child elements */
+    overflow: hidden; /* Hide overflow for container, but allow scrolling in content area */
+}
+
+/* Sticky header for modal */
+.modal-sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #2A2B2F;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(183, 179, 173, 0.2);
+    z-index: 1001;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Title within sticky header */
+.modal-sticky-header .depth-title {
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
 }
 
 
-.arrows {
-	width: 30px;
-	height: 36px;
-	position: sticky;
-	top: 20px; /* Use top to make it sticky from the top of the viewport */
-	left: 50%;
-	margin-left: -30px; /* Centers it horizontally */
-	z-index: 1000; /* Ensure it's on top of other elements */
+
+/* Create the X using ::before and ::after */
+.modal-sticky-header button::before,
+.modal-sticky-header button::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 1px;
+    background-color: currentColor;
+}
+
+.modal-sticky-header button::before {
+    transform: rotate(45deg);
+}
+
+.modal-sticky-header button::after {
+    transform: rotate(-45deg);
+}
+
+/* Scrollable content area */
+.modal-scroll-content {
+    overflow-y: auto;
+    max-height: calc(80vh - 90px); /* Adjust based on header height */
+    padding: 20px;
+}
+
+/* Remove the old button styling to avoid conflicts */
+#depth-images-container > button {
+    display: none;
+}
+
+/* Species title styling */
+.depth-image p:first-of-type {
+    color: #B7B3AE;
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 35px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+/* Depth and country information styling */
+.depth-image p:not(:first-of-type) {
+    color: #B7B3AE;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+/* More Info link styling */
+.depth-image a {
+    color: #B7B3AE;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: block;
+    margin-top: 15px;
+}
+
+/* Animated squares for each ocean zone */
+.image-wrapper {
+    position: relative; /* Make sure each wrapper has relative positioning */
+}
+
+.animated-square {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0.5px solid #B7B3AD;
+    top: 45%; /* Changed from 50% to move squares higher */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+}
+
+@keyframes drawSquare {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    20% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    40% {
+        width: 240px; /* Adjust size as needed */
+        height: 0;
+        opacity: 1;
+    }
+    80% {
+        width: 240px;
+        height: 240px;
+        opacity: 1;
+    }
+    100% {
+        width: 240px;
+        height: 240px;
+        opacity: 1; /* Keep opacity at 1 to remain visible */
+    }
+}
+
+/* Landing section to fill viewport */
+.landing-section {
+    min-height: 100vh; /* Keep this as min-height */
+    margin-bottom: 40vh; /* Add a large bottom margin to push content down */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For positioning context */
+}
+
+/* Remove the padding-bottom that was causing issues */
+.landing-section {
+    padding-bottom: 0;
+}
+
+/* Optional: Add a subtle visual separator */
+.landing-section::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(183, 179, 173, 0.3), transparent);
+}
+
+/* Add this to your style.css file */
+#rectangle-title {
+    padding-top: 160px; /* Adjust this value as needed */
+}
+
+#rectangles-container {
+    display: flex;
+    justify-content: center; /* Centering the rectangles horizontally */
+    align-items: center; /* Aligning items vertically in the center */
+    padding-top: 50px;
+}
+
+.image-label {
+  position: absolute;
+  top: 85px;
+  left: 70px;
+  color: #827F7B;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  z-index: 2;
 }
 
 .arrows path {
@@ -477,63 +746,4 @@ a {
 .arrows path.a3 {
 	animation-delay:0s;
 	-webkit-animation-delay:0s; /* Safari and Chrome */
-}
-
-.sticky-image {
-    pointer-events: none;  /* This prevents the image from interfering with chart interactions */
-    transition: opacity 0.5s ease-in-out;
-}
-
-#sticky-image-container {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    width: 200px;
-    z-index: 1000;
-}
-
-#sticky-image {
-    position: sticky;
-    top: 20px;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-#rectangles-container {
-    display: flex;
-    justify-content: center; /* Centering the rectangles horizontally */
-    align-items: center; /* Aligning items vertically in the center */
-    padding-top: 50px;
-}
-
-.rectangle {
-    height: 106px; /* Set the height of the rectangles */
-    margin-right: 22px; /* Space between rectangles */
-}
-
-
-/* Tooltip styles */
-.rectangle-container {
-    position: relative; /* Position for the tooltip */
-}
-
-.rectangle-container[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100%; /* Position below the rectangle */
-    font-family: 'Inter', sans-serif; /* Set the font */
-    width: 300px;
-    background-color: rgba(58, 59, 64, 0.7);
-    color: #B7B3AD;
-    text-align: center;
-    border-radius: 6px;
-    padding: 20px;
-    z-index: 10; /* Ensure tooltip appears above other elements */
-}
-
-.sticky-image {
-    will-change: transform;
 }

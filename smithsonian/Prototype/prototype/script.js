@@ -1,5 +1,3 @@
-
-
 // Depth groups
 const depthGroups = [
     "0-10 meters", "10-20 meters", "20-30 meters", "30-40 meters", 
@@ -329,38 +327,49 @@ chartGroup.selectAll(".bubble")
             closePopup();
         });
         
-        // Display the depth group
-        imageContainer.append("h2")
-        .attr("class", "depth-title") // Add a class for styling
-        .text(`Images for ${depthGroup}`)
-        .style("text-align", "center")
-        .style("font-weight", "bold");
-    
-    
+        // Create a sticky header for title and close button
+        const stickyHeader = imageContainer.append("div")
+            .attr("class", "modal-sticky-header");
             
+        // Add the title to the sticky header
+        stickyHeader.append("h2")
+            .attr("class", "depth-title")
+            .text(`Images for ${depthGroup}`);
+            
+        // Add close button to the sticky header
+        stickyHeader.append("button")
+            .attr("aria-label", "Close")  // For accessibility
+            .on("click", function() {
+                closePopup();
+            });
         
+        // Create a scrollable content area
+        const scrollContent = imageContainer.append("div")
+            .attr("class", "modal-scroll-content");
+            
+        // Create a grid container for the images inside the scrollable area
+        const gridContainer = scrollContent.append("div")
+            .attr("class", "image-grid-container");
+            
         // Create image elements
-        imageContainer.selectAll(".depth-image")
+        gridContainer.selectAll(".depth-image")
             .data(imagesForDepth)
             .enter()
             .append("div")
             .attr("class", "depth-image")
             .html(d => `
-                <img src="${d.imageGUID}" alt="${d.title}">
+                <div class="image-wrapper-grid">
+                    <img src="${d.imageGUID}" alt="${d.title}">
+                </div>
                 <p>${d.title}</p>
                 <p>Depth: ${d.depth} meters</p>
                 <p>Country: ${d.country}</p>
                 <a href="${d.link}" target="_blank">More Info</a>
             `);
-            const closeButton = imageContainer.append("button")
-            .text("Close")
-            .on("click", function() {
-                closePopup();
-            });
+    
         // Show the image container
         imageContainer.style("display", "block");
         document.addEventListener('click', closePopupOnOutsideClick);
-
     }
 
     function closePopup() {
@@ -494,37 +503,3 @@ arrowGroup.selectAll(".arrows")
 
 });
 
-// const paragraphs = [
-//     {
-//         range: "20-30 meters",
-//         image: "images/epipelagic-modal.png"
-//     },
-//     {
-//         range: "200-300 meters",
-//         image: "images/mesophotic-modal.png"
-//     },
-//     {
-//         range: "1000-2000 meters",
-//         image: "images/benthic-modal.png"
-//     }
-// ];
-
-// // Add the images to the right of the specific depth ranges
-// paragraphs.forEach(paragraph => {
-//     const group = chartGroup.append("g")
-//     .attr("transform", `translate(550, ${yScale(paragraph.range) - 150})`)
-//     .attr("class", "group-style");  // Apply a class to the group
-
-
-//     // Add image if present
-//     if (paragraph.image) {
-//         group.append("image")
-//             .attr("xlink:href", paragraph.image)
-//             .attr("width", 290)
-//             .attr("height", 873)
-//             .attr("x", 300)
-//             .attr("y", -700)
-//             .attr("class", "image-style");  // Apply a class to the image
-
-//     }
-// });

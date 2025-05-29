@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beneath the Surface</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">   
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
 <body>
     <h1 class="title">
@@ -18,21 +19,24 @@
 
     <div class="image-container">
         <div class="image-wrapper">
+            <div class="animated-square" id="animated-square-1"></div>
+            <span class="image-label" id="label-1">SPOON WORM</span>
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
                 <span class="tooltip">
                     <p>This is where most marine life thrives due to abundant sunlight for photosynthesis.</p>
-                    <p style="font-size: 12px; opacity: 0.5">Pictured: Spoon worm, bobtail squid, gastropoda</p>
                 </span>           
             </div>
             <img id="main-image" src="images/01.jpg" alt="Image 01">
             <img id="image-b" src="images/01-b.jpg" alt="Image 01-b" style="display:none;">
             <img id="image-c" src="images/01-c.jpg" alt="Image 01-c" style="display:none;">
-            <p class="image-text">Epipelagic Zone<br>(Sunlight Zone)</p>
+
             <div class="rectangle-container"> <!-- New container for positioning -->
-                <p class="rectangle-text">0 - 200 meters</p> <!-- Text on top -->
-                <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>
+             <p class="image-text">
+                <span class="zone-name">Epipelagic Zone</span><br>
+                <span class="zone-depth">(Sunlight Zone: 0 - 200 meters)</span>
+            </p>
         </div>
         
         <script>
@@ -41,6 +45,7 @@
                 document.getElementById('image-b'),
                 document.getElementById('image-c')
             ];
+            const imageLabels = ["SPOON WORM", "BOBTAIL SQUID", "GASTROPODA"];
             let currentIndex = 0;
     
             function changeImage() {
@@ -52,6 +57,9 @@
     
                 // Show the next image
                 images[currentIndex].style.display = 'block';
+                
+                // Update the label text
+                document.getElementById('label-1').textContent = imageLabels[currentIndex];
             }
     
             // Start the image changing every 3 seconds
@@ -59,21 +67,24 @@
         </script>
          
         <div class="image-wrapper">
+            <div class="animated-square" id="animated-square-2"></div>
+            <span class="image-label" id="label-2">IRIDESCENT ANTARTIC SNAIL</span>
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
                 <span class="tooltip">
                     <p>Where light gradually diminishes. Many bioluminescent organisms inhabit this mysterious realm.</p>
-                    <p style="font-size: 12px; opacity: 0.5">Pictured: Iridescent Antarctic snail, Solaster caribbaeus Verrill, Hyalocylis striata</p>
                 </span>
             </div>
             <img id="main-image-2" src="images/02.jpg" alt="Image 02">
             <img id="image-b-2" src="images/02-b.jpg" alt="Image 02-b" style="display:none;">
             <img id="image-c-2" src="images/02-c.jpg" alt="Image 02-c" style="display:none;">
-            <p class="image-text">Mesopelagic Zone<br>(Twilight Zone)</p>
+       
             <div class="rectangle-container"> <!-- New container for positioning -->
-                <p class="rectangle-text">200 - 1,000 meters</p> <!-- Text on top -->
-                <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>       
+                 <p class="image-text">
+                <span class="zone-name">Mesopelagic Zone</span><br>
+                <span class="zone-depth">(Twilight Zone: 200 - 1,000 meters)</span>
+            </p>
         </div>
     
         <script>
@@ -82,6 +93,7 @@
                 document.getElementById('image-b-2'),
                 document.getElementById('image-c-2')
             ];
+            const imageLabels2 = ["IRIDESCENT ANTARTIC SNAIL", "SOLASTER CARIBBAEUS VERRILL", "HYALOCYLIS STRIATA"];
             let currentIndex2 = 0;
     
             function changeImage2() {
@@ -93,6 +105,9 @@
     
                 // Show the next image
                 images2[currentIndex2].style.display = 'block';
+                
+                // Update the label text
+                document.getElementById('label-2').textContent = imageLabels2[currentIndex2];
             }
     
             // Start the image changing every 3 seconds
@@ -100,20 +115,22 @@
         </script>
     
         <div class="image-wrapper">
+            <div class="animated-square" id="animated-square-3"></div>
+            <span class="image-label" id="label-3">PRIMNO MACROPA</span>
             <div class="tooltip-container">
                 <img src="images/hover.png" class="hover-image" alt="Hover Image">
                 <span class="tooltip">
                     <p>Zone of perpetual darkness. Strange and often translucent creatures adapted to extreme pressure live here.</p>
-                    <p style="font-size: 12px; opacity: 0.5">Pictured: Primno macropa, Eulimidae, Atolla jellyfish</p>
                 </span>
             </div>            
             <img id="main-image-3" src="images/03.jpg" alt="Image 03">
             <img id="image-b-3" src="images/03-b.jpg" alt="Image 03-b" style="display:none;">
             <img id="image-c-3" src="images/03-c.jpg" alt="Image 03-c" style="display:none;">
-            <p class="image-text">Bathypelagic Zone<br>(Midnight Zone)</p>
+            <p class="image-text">
+                <span class="zone-name">Bathypelagic Zone</span><br>
+                <span class="zone-depth">(Midnight Zone: 1,000 - 4,000 meters)</span>
+            </p>
             <div class="rectangle-container"> <!-- New container for positioning -->
-                <p class="rectangle-text">1,000 - 4,000 meters</p> <!-- Text on top -->
-                <img src="images/rectangle.png" class="rectangle-image" alt="Rectangle Image">
             </div>
         </div>
     
@@ -123,6 +140,7 @@
                 document.getElementById('image-b-3'),
                 document.getElementById('image-c-3')
             ];
+            const imageLabels3 = ["PRIMNO MACROPA", "EULIMIDAE", "ATOLLA JELLYFISH"];
             let currentIndex3 = 0;
     
             function changeImage3() {
@@ -134,6 +152,9 @@
     
                 // Show the next image
                 images3[currentIndex3].style.display = 'block';
+                
+                // Update the label text
+                document.getElementById('label-3').textContent = imageLabels3[currentIndex3];
             }
     
             // Start the image changing every 3 seconds
@@ -144,7 +165,7 @@
 
     <div id="rectangle-title">
         <h2>Visualizing Depths Beyond the Bathypelagic Zone</h2>
-        <h3>While the Smithsonian Collections Invertebrates have been explored up to depths of 4,000 meters, you can discover more about other fascinating oceanic zones by hovering over them.</h3>
+        <h3>While the Smithsonian Collections Invertebrates have been explored up to depths of 4,000 meters, you can discover more about other fascinating oceanic zones by hovering over them. Rectangle widths reflect the size of each depth interval.</h3>
     </div>
     
     <div id="rectangles-container">
@@ -181,10 +202,10 @@
         <div class="chart-tooltip"></div>
     </div>
 
-    <div id="sticky-image-container">
+    <!-- <div id="sticky-image-container">
         <img src="images/epipelagic-modal.png" alt="Epipelagic Zone" id="sticky-image" class="sticky">
     </div>
-    
+     -->
 
 <!-- Text that will change on circle click -->
 <div id="chart-container" style="display: flex; flex-direction: column; align-items: center;">
@@ -193,7 +214,6 @@
         <p><em>Click</em> on a circle to explore images at each depth interval.</p>
     </div>
 
-    <div class="down-arrow"></div>
 
     <div id="chart"></div>
 
@@ -227,7 +247,33 @@
     </script>
 </div>
 
-
+<script>
+// Run animation only on initial page load or refresh
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate all three squares
+    const squares = document.querySelectorAll('.animated-square');
+    
+    if (squares.length > 0) {
+        // Animate each square with a slight delay between them
+        squares.forEach((square, index) => {
+            // Reset animation state first
+            square.style.animation = 'none';
+            square.offsetHeight; // Force reflow
+            
+            // Apply animation with delay
+            setTimeout(() => {
+                square.style.animation = 'drawSquare 3s ease-in-out forwards';
+                console.log(`Animation started for square ${index+1}`);
+            }, index * 300); // Delay each square by 300ms
+        });
+    } else {
+        console.log("No squares found");
+    }
+    
+    // Reset session storage for testing
+    sessionStorage.removeItem('hasVisited');
+});
+</script>
 
 </body>
 </html>
